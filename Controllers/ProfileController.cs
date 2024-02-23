@@ -4,11 +4,11 @@ using dotnet_web_mvc.Models;
 
 namespace dotnet_web_mvc.Controllers;
 
-public class EdionsController : Controller
+public class ProfileController : Controller
 {
-    private readonly ILogger<EdionsController> _logger;
+    private readonly ILogger<ProfileController> _logger;
 
-    public EdionsController(ILogger<EdionsController> logger)
+    public ProfileController(ILogger<ProfileController> logger)
     {
         _logger = logger;
     }
@@ -18,7 +18,7 @@ public class EdionsController : Controller
         return View();
     }
 
-    public IActionResult Profile()
+    public IActionResult About()
     {
         return View();
     }
