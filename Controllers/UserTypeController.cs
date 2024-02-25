@@ -9,31 +9,26 @@ using dotnet_web_mvc.Entity;
 
 namespace dotnet_web_mvc.Controllers
 {
-    public class LibraryController : Controller
+    public class UserTypeController : Controller
     {
         private readonly DotnetWebMvcContext _context;
 
-        public LibraryController(DotnetWebMvcContext library)
+        public UserTypeController(DotnetWebMvcContext user)
         {
-            _context = library;
+            _context = user;
         }
 
         public IActionResult Index()
         {
-            var book = _context.Books.ToList();
-            return View(book);
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
+            var userType = _context.Usertypes.ToList();
+            return View(userType);
         }
 
         [HttpPost]
-        public IActionResult Create(Book b)
+        public ActionResult AddUserType(string name)
         {
-            _context.Books.Add(b);
+            var userType = new Usertype { Name = name };
+            _context.Usertypes.Add(userType);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
@@ -42,13 +37,14 @@ namespace dotnet_web_mvc.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_context.Books.Where(q=> q.Id == id).FirstOrDefault());
+            return View(_context.Usertypes.Where(q=> q.Id == id).FirstOrDefault());
         }
 
         [HttpPost]
-        public IActionResult Update(Book book)
+        public ActionResult UpdateUserType(int id, string name)
         {
-            _context.Books.Update(book);
+            var userType = _context.Usertypes.Find(id);
+            userType.Name = name;
             _context.SaveChanges();
 
             return RedirectToAction("Index");
@@ -56,8 +52,8 @@ namespace dotnet_web_mvc.Controllers
 
         public IActionResult Delete(int id)
         {
-            var book = _context.Books.Where( q => q.Id == id).FirstOrDefault();
-            _context.Books.Remove(book);
+            var userType = _context.Usertypes.Where( q => q.Id == id).FirstOrDefault();
+            _context.Usertypes.Remove(userType);
             _context.SaveChanges();
 
             return RedirectToAction("Index");

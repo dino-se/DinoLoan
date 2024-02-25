@@ -1,0 +1,15 @@
+@model dotnet_web_mvc.Entity.Usertype
+
+<h1>Update Book</h1>
+
+<form asp-action="UpdateUserType" method="post" >
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name"> </label>
+        <input asp-for="Name" class="form-control" >
+        <span asp-validation-for="Name" class="text-danger" ></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
