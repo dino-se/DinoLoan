@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using dotnet_web_mvc.Entity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<DotnetWebMvcContext> (options =>
+    options.UseMySQL("Server=localhost;Database=dotnet-web-mvc;User Id=root;")
+);
 
 var app = builder.Build();
 
