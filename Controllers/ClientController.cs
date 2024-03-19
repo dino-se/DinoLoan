@@ -34,5 +34,13 @@ namespace dotnet_web_mvc.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Create(Clientinfo c)
+        {
+            _context.Clientinfos.Add(c);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
