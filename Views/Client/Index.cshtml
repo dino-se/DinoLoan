@@ -1,0 +1,49 @@
+@model List<dotnet_web_mvc.Entity.Clientinfo>
+
+<h1>Client Information</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col">#</th>
+            <th class="col">UserType</th>
+            <th class="col">FirstName</th>
+            <th class="col">MiddleName</th>
+            <th class="col">LastName</th>
+            <th class="col">Address</th>
+            <th class="col">ZipCode</th>
+            <th class="col">Birthday</th>
+            <th class="col">Age</th>
+            <th class="col">NameOfFather</th>
+            <th class="col">NameOfMother</th>
+            <th class="col">CivilStatus</th>
+            <th class="col">Religion</th>
+            <th class="col">Occupation</th>
+            <th class="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var clientInfo in Model){
+        <tr>
+            <th>@clientInfo.Id</th>
+            <td>@clientInfo.UserType</td>
+            <td>@clientInfo.FirstName</td>
+            <td>@clientInfo.MiddleName</td>
+            <td>@clientInfo.LastName</td>
+            <td>@clientInfo.Address</td>
+            <td>@clientInfo.ZipCode</td>
+            <td>@clientInfo.Birthday</td>
+            <td>@clientInfo.Age</td>
+            <td>@clientInfo.NameOfFather</td>
+            <td>@clientInfo.NameOfMother</td>
+            <td>@clientInfo.CivilStatus</td>
+            <td>@clientInfo.Religion</td>
+            <td>@clientInfo.Occupation</td>
+            <td>
+                <a class="btn btn-warning" href="usertype/update/@clientInfo.Id">Update</a>
+                <a class="btn btn-danger" href="usertype/delete/@clientInfo.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

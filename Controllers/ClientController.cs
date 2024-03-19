@@ -18,12 +18,12 @@ namespace dotnet_web_mvc.Controllers
             _context = client;
         }
 
-        public IActionResult Index()
+       public IActionResult Index()
         {
-            return View();
+            var clientInfo = _context.Clientinfos.ToList();
+            return View(clientInfo);
         }
 
-        //User Type
 
     }
 }
