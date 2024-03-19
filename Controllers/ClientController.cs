@@ -20,10 +20,13 @@ namespace dotnet_web_mvc.Controllers
 
        public IActionResult Index()
         {
+            var userTypes = _context.Usertypes.ToList();
             var clientInfo = _context.Clientinfos.ToList();
+            ViewData["UserTypes"] = userTypes;
             return View(clientInfo);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             var userTypes = _context.Usertypes.ToList();

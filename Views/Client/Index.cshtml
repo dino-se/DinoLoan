@@ -1,3 +1,5 @@
+@using dotnet_web_mvc.Entity
+
 @model List<dotnet_web_mvc.Entity.Clientinfo>
 
 <h1>Client Information</h1>
@@ -27,7 +29,12 @@
         @foreach(var clientInfo in Model){
         <tr>
             <th>@clientInfo.Id</th>
-            <td>@clientInfo.UserType</td>
+            <td>@foreach (var userType in ViewData["UserTypes"] as List<Usertype>) {
+                @if (userType.Id == clientInfo.UserType) {
+                    @userType.Name
+                    }
+                }</td>
+            @* <td>@clientInfo.UserType</td> *@
             <td>@clientInfo.FirstName</td>
             <td>@clientInfo.MiddleName</td>
             <td>@clientInfo.LastName</td>
