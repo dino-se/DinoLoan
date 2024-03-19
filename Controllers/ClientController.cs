@@ -24,6 +24,12 @@ namespace dotnet_web_mvc.Controllers
             return View(clientInfo);
         }
 
+        public IActionResult Create()
+        {
+            var userTypes = _context.Usertypes.ToList();
+            ViewData["UserTypes"] = userTypes;
+            return View();
+        }
 
     }
 }

@@ -1,0 +1,35 @@
+@using dotnet_web_mvc.Entity
+
+@model dotnet_web_mvc.Entity.Usertype
+
+<h1>Add new usertype</h1>
+
+
+<form action="Create" method="post">
+    <div class="row">
+        <select name="UserType" id="UserType" class="form-control" required>
+            @foreach (var userType in ViewData["UserTypes"] as List<Usertype>)
+            {
+                <option value="@userType.Id">@userType.Name</option>
+            }
+        </select>
+
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="number" class="form-control" placeholder="">
+        <input type="date" class="form-control" placeholder="">
+        <input type="number" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+        <input type="text" class="form-control" placeholder="">
+    </div>
+
+    <div >
+        <input class="btn btn-success" type="submit" value="Add">
+    </div>
+</form>
+
