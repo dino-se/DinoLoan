@@ -42,5 +42,14 @@ namespace dotnet_web_mvc.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var client = _context.Clientinfos.Where(q => q.Id == id).FirstOrDefault();
+            _context.Clientinfos.Remove(client);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
