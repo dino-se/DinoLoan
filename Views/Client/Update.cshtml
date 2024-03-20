@@ -1,0 +1,37 @@
+@using dotnet_web_mvc.Entity
+
+@model dotnet_web_mvc.Entity.Clientinfo
+
+<h1>Add new usertype</h1>
+
+
+<form asp-action="Update" method="post">
+    <div class="row">
+        <input type="hidden" asp-for="Id">
+        
+        <select asp-for="UserType" id="UserType" class="form-control" required>
+            @foreach (var userType in ViewData["UserTypes"] as List<Usertype>)
+            {
+                <option value="@userType.Id">@userType.Name</option>
+            }
+        </select>
+
+        <input type="text" asp-for="FirstName" class="form-control" placeholder="FirstName">
+        <input type="text" asp-for="MiddleName" class="form-control" placeholder="MiddleName">
+        <input type="text" asp-for="LastName" class="form-control" placeholder="LastName">
+        <input type="text" asp-for="Address" class="form-control" placeholder="Address">
+        <input type="number" asp-for="ZipCode" class="form-control" placeholder="ZipCode">
+        <input type="date" asp-for="Birthday" class="form-control" placeholder="Birthday">
+        <input type="number" asp-for="Age" class="form-control" placeholder="Age">
+        <input type="text" asp-for="NameOfFather" class="form-control" placeholder="NameOfFather">
+        <input type="text" asp-for="NameOfMother" class="form-control" placeholder="NameOfMother">
+        <input type="text" asp-for="CivilStatus" class="form-control" placeholder="CivilStatus">
+        <input type="text" asp-for="Religion" class="form-control" placeholder="Religion">
+        <input type="text" asp-for="Occupation" class="form-control" placeholder="Occupation">
+    </div>
+
+    <div >
+        <input class="btn btn-success" type="submit" value="Add">
+    </div>
+</form>
+
