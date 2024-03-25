@@ -8,16 +8,83 @@
 <form asp-action="Update" method="post">
     <div class="row">
         <input type="hidden" asp-for="Id">
-        
-        <select asp-for="UserType" id="UserType" class="form-control" required>
-            @foreach (var userType in ViewData["UserTypes"] as List<Usertype>)
-            {
-                <option value="@userType.Id">@userType.Name</option>
-            }
-        </select>
 
-        <input type="text" asp-for="FirstName" class="form-control" placeholder="FirstName">
-        <input type="text" asp-for="MiddleName" class="form-control" placeholder="MiddleName">
+        <div class="form-group col-md-4 mt-3">
+            <label>First Name</label>
+            <input type="text" asp-for="FirstName" class="form-control" placeholder="FirstName">
+        </div>
+
+        <div class="form-group col-md-4 mt-3">
+            <label>Middle Name</label>
+            <input type="text" asp-for="MiddleName" class="form-control" placeholder="MiddleName">
+        </div>
+
+        <div class="form-group col-md-4 mt-3">
+            <label>Last Name</label>
+            <input type="text" asp-for="LastName" class="form-control" placeholder="LastName">
+        </div>
+
+        <div class="form-group col-md-9 mt-3">
+            <label>Address</label>
+            <input type="text" asp-for="Address" class="form-control" placeholder="Address">
+        </div>
+
+        <div class="form-group col-md-3 mt-3">
+            <label>Zip Code</label>
+            <input type="number" asp-for="ZipCode" class="form-control" placeholder="ZipCode">
+        </div>
+
+        <div class="form-group col-md-5 mt-3">
+            <label>Birthday</label>
+            <input type="date" asp-for="Birthday" class="form-control" placeholder="Birthday">
+        </div>
+
+        <div class="form-group col-md-2 mt-3">
+            <label>Age</label>
+            <input type="number" asp-for="Age" class="form-control" placeholder="Age">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Name of Father</label>
+            <input type="text" asp-for="NameOfFather" class="form-control" placeholder="NameOfFather">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Name of Mother</label>
+            <input type="text" asp-for="NameOfMother" class="form-control" placeholder="NameOfMother">
+        </div>
+
+        <div class="form-group col-md-3 mt-3">
+            <label>Civil Status</label>
+            <select asp-for="CivilStatus" class="form-control">
+                <option selected disabled>CivilStatus</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+            </select>
+        </div>
+
+         <div class="form-group col-md-3 mt-3">
+            <label>Religion</label>
+            <input type="text" asp-for="Religion" class="form-control" placeholder="Religion">
+        </div>
+
+         <div class="form-group col-md-3 mt-3">
+            <label>Occupation</label>
+            <input type="text" asp-for="Occupation" class="form-control" placeholder="Occupation">
+        </div>
+
+        <div class="form-group col-md-3 mt-3">
+            <select asp-for="UserType" id="UserType" class="form-control" required>
+                @foreach (var userType in ViewData["UserTypes"] as List<Usertype>)
+                {
+                    <option value="@userType.Id">@userType.Name</option>
+                }
+            </select>
+        </div>
+
+        @* <input type="text"  class="form-control" placeholder="MiddleName">
         <input type="text" asp-for="LastName" class="form-control" placeholder="LastName">
         <input type="text" asp-for="Address" class="form-control" placeholder="Address">
         <input type="number" asp-for="ZipCode" class="form-control" placeholder="ZipCode">
@@ -27,7 +94,7 @@
         <input type="text" asp-for="NameOfMother" class="form-control" placeholder="NameOfMother">
         <input type="text" asp-for="CivilStatus" class="form-control" placeholder="CivilStatus">
         <input type="text" asp-for="Religion" class="form-control" placeholder="Religion">
-        <input type="text" asp-for="Occupation" class="form-control" placeholder="Occupation">
+        <input type="text" asp-for="Occupation" class="form-control" placeholder="Occupation"> *@
     </div>
 
     <div >
