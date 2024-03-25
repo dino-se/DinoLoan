@@ -2,9 +2,15 @@
 
 @model List<dotnet_web_mvc.Entity.Clientinfo>
 
-<h1>Client Information</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Client Information</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="usertype">User type</a>
+</ul>
 
-<a class="btn btn-success" href="client/create">Add new client<a/>
+<a class="btn btn-success mt-4" href="client/create">Add new client</a>
 <table class="table">
     <thead>
         <tr>
