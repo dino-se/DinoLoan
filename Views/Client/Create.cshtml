@@ -3,14 +3,14 @@
 @model dotnet_web_mvc.Entity.Clientinfo
 
 @{
-    //var curDate = DateTime.Now.Date;
-    //var birthday = Model.Birthday;
-    //var age = curDate.Year - birthday.Year;
-    //if (curDate.Month < birthday.Month ||
-    //   (curDate.Month == birthday.Month && curDate.Day < birthday.Day))
-    //{
-    //    age--;
-    //}
+    var curDate = DateTime.Now.Date;
+    var birthday = Model.Birthday;
+    var age = curDate.Year - birthday.Year;
+    if (curDate.Month < birthday.Month ||
+       (curDate.Month == birthday.Month && curDate.Day < birthday.Day))
+    {
+        age--;
+    }
 }
 
 <nav aria-label="breadcrumb">
@@ -58,7 +58,7 @@
 
         <div class="form-group col-md-2 mt-3">
             <label>Age</label>
-            <input type="number" name="Age" value="" class="form-control" placeholder="Age">
+            <input type="number" name="Age" value="@age" class="form-control" placeholder="Age">
         </div>
 
         <div class="form-group col-md-6 mt-3">

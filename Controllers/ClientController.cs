@@ -30,8 +30,9 @@ namespace dotnet_web_mvc.Controllers
         public IActionResult Create()
         {
             var userTypes = _context.Usertypes.ToList();
+            var clientInfo = new Clientinfo();
             ViewData["UserTypes"] = userTypes;
-            return View();
+            return View(clientInfo);
         }
 
         [HttpPost]
