@@ -76,12 +76,17 @@
         </div>
 
         <div class="form-group col-md-3 mt-3">
+            <label>User Type</label>
             <select asp-for="UserType" id="UserType" class="form-control" required>
                 @foreach (var userType in ViewData["UserTypes"] as List<Usertype>)
                 {
                     <option value="@userType.Id">@userType.Name</option>
                 }
             </select>
+        </div>
+
+        <div class="mt-3">
+            <input class="btn btn-outline-success float-end" type="submit" value="Update">
         </div>
 
         @* <input type="text"  class="form-control" placeholder="MiddleName">
@@ -95,10 +100,6 @@
         <input type="text" asp-for="CivilStatus" class="form-control" placeholder="CivilStatus">
         <input type="text" asp-for="Religion" class="form-control" placeholder="Religion">
         <input type="text" asp-for="Occupation" class="form-control" placeholder="Occupation"> *@
-    </div>
-
-    <div >
-        <input class="btn btn-success" type="submit" value="Update">
     </div>
 </form>
 
