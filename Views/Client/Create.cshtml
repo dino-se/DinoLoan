@@ -1,6 +1,17 @@
 @using dotnet_web_mvc.Entity
 
-@model dotnet_web_mvc.Entity.Usertype
+@model dotnet_web_mvc.Entity.Clientinfo
+
+@{
+    //var curDate = DateTime.Now.Date;
+    //var birthday = Model.Birthday;
+    //var age = curDate.Year - birthday.Year;
+    //if (curDate.Month < birthday.Month ||
+    //   (curDate.Month == birthday.Month && curDate.Day < birthday.Day))
+    //{
+    //    age--;
+    //}
+}
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -27,7 +38,7 @@
 
         <div class="form-group col-md-4 mt-3">
             <label>Last Name</label>
-            <input type="text" name="LastName " class="form-control" placeholder="LastName">
+            <input type="text" name="LastName" class="form-control" placeholder="LastName">
         </div>
 
         <div class="form-group col-md-9 mt-3">
@@ -47,7 +58,7 @@
 
         <div class="form-group col-md-2 mt-3">
             <label>Age</label>
-            <input type="number" name="Age" class="form-control" placeholder="Age">
+            <input type="number" name="Age" value="" class="form-control" placeholder="Age">
         </div>
 
         <div class="form-group col-md-6 mt-3">
