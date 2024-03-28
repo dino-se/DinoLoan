@@ -19,7 +19,7 @@
                 <th class="col">FirstName</th>
                 <th class="col">MiddleName</th>
                 <th class="col">LastName</th>
-                <th class="col">Address</th>
+@*                 <th class="col">Address</th>
                 <th class="col">ZipCode</th>
                 <th class="col">Birthday</th>
                 <th class="col">Age</th>
@@ -27,7 +27,7 @@
                 <th class="col">NameOfMother</th>
                 <th class="col">CivilStatus</th>
                 <th class="col">Religion</th>
-                <th class="col">Occupation</th>
+                <th class="col">Occupation</th> *@
                 <th class="col">Actions</th>
             </tr>
         </thead>
@@ -47,7 +47,7 @@
                     <td>@clientInfo.FirstName</td>
                     <td>@clientInfo.MiddleName</td>
                     <td>@clientInfo.LastName</td>
-                    <td>@clientInfo.Address</td>
+                    @* <td>@clientInfo.Address</td>
                     <td>@clientInfo.ZipCode</td>
                     <td>@clientInfo.Birthday.ToString("MMM dd yyyy")</td>
                     <td>@clientInfo.Age</td>
@@ -55,10 +55,11 @@
                     <td>@clientInfo.NameOfMother</td>
                     <td>@clientInfo.CivilStatus</td>
                     <td>@clientInfo.Religion</td>
-                    <td>@clientInfo.Occupation</td>
+                    <td>@clientInfo.Occupation</td> *@
                     <td>
-                        <a class="btn btn-warning" href="client/update/@clientInfo.Id">Update</a>
-                        <a class="btn btn-danger" href="client/delete/@clientInfo.Id">Delete</a>
+                        <a class="btn btn-success" asp-action="Details" asp-route-id="@clientInfo.Id">Details</a>
+                        <a class="btn btn-warning" asp-action="Update" asp-route-id="@clientInfo.Id">Update</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@clientInfo.Id">Delete</a>
                     </td>
                 </tr>
             }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using dotnet_web_mvc.Entity;
 using dotnet_web_mvc.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_web_mvc.Controllers
 {
@@ -44,6 +45,23 @@ namespace dotnet_web_mvc.Controllers
                     Occupation = clientInfo.Occupation,
                 }).ToList();
             return View(clientInfos);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Clientinfos == null)
+            {
+                return NotFound();
+            }
+
+            var clientInfo = await _context.Clientinfos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (clientInfo == null)
+            {
+                return NotFound();
+            }
+
+            return View(clientInfo);
         }
 
         [HttpGet]
