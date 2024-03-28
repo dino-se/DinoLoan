@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using dotnet_web_mvc.Entity;
+using dotnet_web_mvc.ViewModels;
 
 namespace dotnet_web_mvc.Controllers
 {
@@ -20,10 +21,29 @@ namespace dotnet_web_mvc.Controllers
 
        public IActionResult Index()
         {
-            var userTypes = _context.Usertypes.ToList();
-            var clientInfo = _context.Clientinfos.ToList();
-            ViewData["UserTypes"] = userTypes;
-            return View(clientInfo);
+            var clientInfos = (
+                from clientInfo in _context.Clientinfos
+                join usertype in _context.Usertypes
+                on clientInfo.UserType equals usertype.Id
+                select new ClientInfoViewModel
+                {
+                    Id = clientInfo.Id,
+                    UserType = clientInfo.UserType,
+                    UserTypeName = usertype.Name,
+                    FirstName = clientInfo.FirstName,
+                    MiddleName = clientInfo.MiddleName,
+                    LastName = clientInfo.LastName,
+                    Address = clientInfo.Address,
+                    ZipCode = clientInfo.ZipCode,
+                    Birthday = clientInfo.Birthday,
+                    Age = clientInfo.Age,
+                    NameOfFather = clientInfo.NameOfFather,
+                    NameOfMother = clientInfo.NameOfMother,
+                    CivilStatus = clientInfo.CivilStatus,
+                    Religion = clientInfo.Religion,
+                    Occupation = clientInfo.Occupation,
+                }).ToList();
+            return View(clientInfos);
         }
 
         [HttpGet]
