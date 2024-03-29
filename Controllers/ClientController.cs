@@ -54,14 +54,14 @@ namespace dotnet_web_mvc.Controllers
                 return NotFound();
             }
 
-            var clientInfo = await _context.Clientinfos
+            var clientInfos = await _context.Clientinfos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (clientInfo == null)
+            if (clientInfos == null)
             {
                 return NotFound();
             }
 
-            return View(clientInfo);
+            return View(clientInfos);
         }
 
         [HttpGet]
