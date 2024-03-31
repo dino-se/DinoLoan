@@ -111,14 +111,14 @@ namespace dotnet_web_mvc.Controllers
         public IActionResult Delete(int id)
         {
             var client = _context.Clientinfos.Where(q => q.Id == id).FirstOrDefault();
+
+            if (client == null)
+            {
+                return NotFound();
+            }
             _context.Clientinfos.Remove(client);
             _context.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public IActionResult AddLoan()
-        {
-            return View();
         }
 
     }

@@ -1,0 +1,66 @@
+﻿@using dotnet_web_mvc.Entity
+
+@model dotnet_web_mvc.Entity.Clientinfo
+
+<form asp-action="AddLoan" method="post">
+	<div class="row">
+		<input type="text" asp-for="Id" />
+
+		<div class="form-group col-md-6 mt-3">
+            <label>Date loan created</label>
+            <input type="date" asp-for="FirstName" class="form-control" placeholder="FirstName">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Loan Type</label>
+            <select asp-for="CivilStatus" class="form-control">
+                <option selected disabled>CivilStatus</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Amount to borrow</label>
+            <input type="number" asp-for="NameOfMother" class="form-control" placeholder="NameOfMother">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Interest</label>
+            <input type="number" asp-for="NameOfFather" class="form-control" placeholder="NameOfFather">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>No of payments</label>
+            <input type="number" asp-for="NameOfMother" class="form-control" placeholder="NameOfMother">
+        </div>
+
+		<div class="form-group col-md-6 mt-3">
+            <label>CBU</label>
+            <input type="number" asp-for="FirstName" class="form-control" placeholder="FirstName">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Insurance</label>
+            <input type="number" asp-for="MiddleName" class="form-control" placeholder="MiddleName">
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Other</label>
+            <input type="number" asp-for="LastName" class="form-control" placeholder="LastName">
+        </div>
+
+		<div class="form-group col-md-6 mt-3">
+            <label>Interested amount</label>
+            <input type="text" asp-for="NameOfFather" class="form-control" placeholder="NameOfFather" disabled>
+        </div>
+
+        <div class="form-group col-md-6 mt-3">
+            <label>Bring home amount</label>
+            <input type="text" asp-for="NameOfMother" class="form-control" placeholder="NameOfMother" disabled>
+        </div>
+
+	</div>
+</form>
