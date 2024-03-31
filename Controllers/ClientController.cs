@@ -116,5 +116,10 @@ namespace dotnet_web_mvc.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult AddLoan()
+        {
+            return View();
+        }
+
     }
 }
