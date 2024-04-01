@@ -11,9 +11,9 @@ namespace dotnet_web_mvc.Controllers
 {
     public class LibraryController : Controller
     {
-        private readonly DotnetWebMvcContext _context;
+        private readonly DinoloanDbContext _context;
 
-        public LibraryController(DotnetWebMvcContext library)
+        public LibraryController(DinoloanDbContext library)
         {
             _context = library;
         }

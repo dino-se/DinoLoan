@@ -11,9 +11,9 @@ namespace dotnet_web_mvc.Controllers
 {
     public class UserTypeController : Controller
     {
-        private readonly DotnetWebMvcContext _context;
+        private readonly DinoloanDbContext _context;
 
-        public UserTypeController(DotnetWebMvcContext user)
+        public UserTypeController(DinoloanDbContext user)
         {
             _context = user;
         }

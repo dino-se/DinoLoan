@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<DotnetWebMvcContext> (options =>
-    options.UseMySQL("Server=localhost;Database=dotnet-web-mvc;User Id=root;")
+builder.Services.AddDbContext<DinoloanDbContext> (options =>
+    options.UseMySQL("Server=localhost;Database=dinoloan_db;User Id=root;")
 );
 
 var app = builder.Build();

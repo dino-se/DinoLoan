@@ -13,9 +13,9 @@ namespace dotnet_web_mvc.Controllers
 {
     public class ClientController : Controller
     {
-        private readonly DotnetWebMvcContext _context;
+        private readonly DinoloanDbContext _context;
 
-        public ClientController(DotnetWebMvcContext client)
+        public ClientController(DinoloanDbContext client)
         {
             _context = client;
         }

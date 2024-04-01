@@ -6,9 +6,9 @@ namespace dotnet_web_mvc.Controllers
 {
     public class LoanController : Controller
     {
-        private readonly DotnetWebMvcContext _context;
+        private readonly DinoloanDbContext _context;
 
-        public LoanController(DotnetWebMvcContext client)
+        public LoanController(DinoloanDbContext client)
         {
             _context = client;
         }

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_web_mvc.Entity;
 
-public partial class DotnetWebMvcContext : DbContext
+public partial class DinoloanDbContext : DbContext
 {
-    public DotnetWebMvcContext()
+    public DinoloanDbContext()
     {
     }
 
-    public DotnetWebMvcContext(DbContextOptions<DotnetWebMvcContext> options)
+    public DinoloanDbContext(DbContextOptions<DinoloanDbContext> options)
         : base(options)
     {
     }
@@ -19,11 +19,13 @@ public partial class DotnetWebMvcContext : DbContext
 
     public virtual DbSet<Clientinfo> Clientinfos { get; set; }
 
+    public virtual DbSet<Loan> Loans { get; set; }
+
     public virtual DbSet<Usertype> Usertypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=localhost;Database=dotnet-web-mvc;User Id=root;");
+        => optionsBuilder.UseMySQL("Server=localhost;Database=dinoloan_db;User Id=root;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -58,6 +60,27 @@ public partial class DotnetWebMvcContext : DbContext
             entity.Property(e => e.Religion).HasMaxLength(100);
             entity.Property(e => e.UserType).HasColumnType("int(11)");
             entity.Property(e => e.ZipCode).HasColumnType("int(11)");
+        });
+
+        modelBuilder.Entity<Loan>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("loan");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.Amount).HasColumnType("int(11)");
+            entity.Property(e => e.DateCreated)
+                .HasDefaultValueSql("'current_timestamp()'")
+                .HasColumnType("date");
+            entity.Property(e => e.Deduction).HasColumnType("int(11)");
+            entity.Property(e => e.DueDate).HasColumnType("date");
+            entity.Property(e => e.Interest).HasColumnType("int(11)");
+            entity.Property(e => e.NoOfPayment).HasColumnType("int(11)");
+            entity.Property(e => e.Penalty).HasColumnType("int(11)");
+            entity.Property(e => e.Receivable).HasColumnType("int(11)");
+            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.Type).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Usertype>(entity =>
