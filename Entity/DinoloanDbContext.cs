@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace dotnet_web_mvc.Entity;
+namespace DinoLoan.Entity;
 
 public partial class DinoloanDbContext : DbContext
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace dotnet_web_mvc.ViewModels
+namespace DinoLoan.ViewModels
 {
     public class ClientInfoViewModel
     {

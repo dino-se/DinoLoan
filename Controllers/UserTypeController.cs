@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using dotnet_web_mvc.Entity;
+using DinoLoan.Entity;
 
-namespace dotnet_web_mvc.Controllers
+namespace DinoLoan.Controllers
 {
     public class UserTypeController : Controller
     {

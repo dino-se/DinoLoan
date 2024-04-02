@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using dotnet_web_mvc.Entity;
-using dotnet_web_mvc.ViewModels;
+using DinoLoan.Entity;
+using DinoLoan.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace dotnet_web_mvc.Controllers
+namespace DinoLoan.Controllers
 {
     public class ClientController : Controller
     {

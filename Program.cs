@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using dotnet_web_mvc.Entity;
+using DinoLoan.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 

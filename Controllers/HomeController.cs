@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using dotnet_web_mvc.Models;
+using DinoLoan.Models;
 
-namespace dotnet_web_mvc.Controllers;
+namespace DinoLoan.Controllers;
 
 public class HomeController : Controller
 {

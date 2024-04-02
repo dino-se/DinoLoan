@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace dotnet_web_mvc.Entity;
+namespace DinoLoan.Entity;
 
 public partial class Usertype
 {

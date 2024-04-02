@@ -1,8 +1,8 @@
-﻿using dotnet_web_mvc.Entity;
-using dotnet_web_mvc.ViewModels;
+﻿using DinoLoan.Entity;
+using DinoLoan.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dotnet_web_mvc.Controllers
+namespace DinoLoan.Controllers
 {
     public class LoanController : Controller
     {

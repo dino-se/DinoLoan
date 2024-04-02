@@ -1,4 +1,4 @@
-namespace dotnet_web_mvc.Models;
+namespace DinoLoan.Models;
 
 public class ErrorViewModel
 {
