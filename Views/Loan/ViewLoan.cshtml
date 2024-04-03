@@ -1,9 +1,20 @@
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../">Loan</a></li>
+    <li class="breadcrumb-item active">Add loan</li>
+  </ol>
+</nav>
+
+<button  class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
+
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Test</th>
             <th>Test</th>
             <th>Test</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -11,6 +22,85 @@
             <td>gsgs</td>
             <td>gsgs</td>
             <td>gsgs</td>
+            <td>
+                <a class="btn btn-info" asp-action="Details">View</a>
+                <a class="btn btn-warning" asp-action="Update">Update</a>
+                <a class="btn btn-danger" asp-action="Delete">Delete</a>
+            </td>
         </tr>
     </tbody>
 </table>
+
+
+<div class="modal" id="addLoanModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form method="post">
+                    <div class="row">
+                        <input type="text" />
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Date loan created</label>
+                            <input type="date" class="form-control" placeholder="FirstName">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Loan Type</label>
+                            <select class="form-control">
+                                <option selected disabled>CivilStatus</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Widowed">Widowed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Amount to borrow</label>
+                            <input type="number" class="form-control" placeholder="NameOfMother">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Interest</label>
+                            <input type="number" class="form-control" placeholder="NameOfFather">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>No of payments</label>
+                            <input type="number" class="form-control" placeholder="NameOfMother">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>CBU</label>
+                            <input type="number" class="form-control" placeholder="FirstName">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Insurance</label>
+                            <input type="number" class="form-control" placeholder="MiddleName">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Other</label>
+                            <input type="number" class="form-control" placeholder="LastName">
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Interested amount</label>
+                            <input type="text" class="form-control" placeholder="NameOfFather" disabled>
+                        </div>
+
+                        <div class="form-group col-md-6 mt-3">
+                            <label>Bring home amount</label>
+                            <input type="text" class="form-control" placeholder="NameOfMother" disabled>
+                        </div>
+
+                    </div>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

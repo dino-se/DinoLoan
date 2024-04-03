@@ -23,13 +23,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Client</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="Index">Loan</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" asp-area="" asp-controller="" asp-action="">Profile</a>
+                            <a class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" asp-area="" asp-controller="" asp-action="">More</a>
                             <div class="dropdown-menu">
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="Library" asp-action="Index">Library</a>
                                 <a class="dropdown-item text-dark" asp-area="" asp-controller="Profile" asp-action="Index">Info</a>
                                 <a class="dropdown-item text-dark" asp-area="" asp-controller="Profile" asp-action="About">About</a>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </div>
                         </li>
                     </ul>
