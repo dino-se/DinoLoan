@@ -41,23 +41,23 @@ namespace DinoLoan.Controllers
 
         public IActionResult AddLoan(int id)
         {
-             var client = _context.Clientinfos.FirstOrDefault(q => q.Id == id);
+            var client = _context.Clientinfos.FirstOrDefault(q => q.Id == id);
             if (client == null)
             {
                 return NotFound();
             }
 
-            var userTypes = _context.Usertypes.ToList();
-            var selectedUserType = client.UserType;
-
-            ViewData["UserTypes"] = userTypes;
-            ViewData["SelectedUserType"] = selectedUserType;
-
             return View(client);
         }
 
-        public IActionResult ViewLoan() {
-            return View();
+        public IActionResult ViewLoan(int id) {
+            var loan = _context.Loans.ToList();
+            if (loan == null)
+            {
+                return NotFound();
+            }
+
+            return View(loan);
         }
     }
 }

@@ -1,3 +1,4 @@
+@model List<DinoLoan.Entity.Loan>
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -11,23 +12,32 @@
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Test</th>
-            <th>Test</th>
-            <th>Test</th>
+            <th>#</th>
+            <th>Type</th>
+            <th>No Payments</th>
+            <th>Collected</th>
+            <th>Collections</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>gsgs</td>
-            <td>gsgs</td>
-            <td>gsgs</td>
-            <td>
-                <a class="btn btn-info" asp-action="Details">View</a>
-                <a class="btn btn-warning" asp-action="Update">Update</a>
-                <a class="btn btn-danger" asp-action="Delete">Delete</a>
-            </td>
-        </tr>
+        @foreach (var loanData in Model)
+        {
+            <tr>
+                <td>@loanData.Type</td>
+                <td>@loanData.NoOfPayment</td>
+                <td></td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details">View</a>
+                    <a class="btn btn-warning" asp-action="Update">Update</a>
+                    <a class="btn btn-danger" asp-action="Delete">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -36,44 +46,44 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form method="post">
+                <form id="addLoan">
                     <div class="row">
                         <input type="text" />
 
                         <div class="form-group col-md-6 mt-3">
                             <label>Date loan created</label>
-                            <input type="date" class="form-control" placeholder="FirstName">
+                            <input type="date" class="form-control" name="DateCreated">
                         </div>
 
                         <div class="form-group col-md-6 mt-3">
                             <label>Loan Type</label>
-                            <select class="form-control">
-                                <option selected disabled>CivilStatus</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Divorced">Divorced</option>
-                                <option value="Widowed">Widowed</option>
+                            <select class="form-control" name="Type">
+                                <option selected disabled>Loan Type</option>
+                                <option value="Daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Yearly">Yearly</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-6 mt-3">
                             <label>Amount to borrow</label>
-                            <input type="number" class="form-control" placeholder="NameOfMother">
+                            <input type="number" name="Amount" class="form-control" placeholder="0">
                         </div>
 
                         <div class="form-group col-md-6 mt-3">
                             <label>Interest</label>
-                            <input type="number" class="form-control" placeholder="NameOfFather">
+                            <input type="number" name="Interest" class="form-control" placeholder="0">
                         </div>
 
                         <div class="form-group col-md-6 mt-3">
                             <label>No of payments</label>
-                            <input type="number" class="form-control" placeholder="NameOfMother">
+                            <input type="number" name="NoOfPayment" class="form-control" placeholder="0">
                         </div>
 
                         <div class="form-group col-md-6 mt-3">
                             <label>CBU</label>
-                            <input type="number" class="form-control" placeholder="FirstName">
+                            <input type="number" class="form-control" placeholder="0">
                         </div>
 
                         <div class="form-group col-md-6 mt-3">
@@ -97,10 +107,28 @@
                         </div>
 
                     </div>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById('addLoan').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch('loanapi/createloan', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(() => {
+        document.getElementById("addLoan").reset();
+        location.reload();
+    });
+});
+</script>
