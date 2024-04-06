@@ -70,16 +70,25 @@ public partial class DinoloanDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Amount).HasColumnType("int(11)");
+            entity.Property(e => e.ClientId).HasColumnType("int(25)");
             entity.Property(e => e.DateCreated)
                 .HasDefaultValueSql("'current_timestamp()'")
                 .HasColumnType("date");
             entity.Property(e => e.Deduction).HasColumnType("int(11)");
-            entity.Property(e => e.DueDate).HasColumnType("date");
+            entity.Property(e => e.DueDate)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("date");
             entity.Property(e => e.Interest).HasColumnType("int(11)");
             entity.Property(e => e.NoOfPayment).HasColumnType("int(11)");
-            entity.Property(e => e.Penalty).HasColumnType("int(11)");
-            entity.Property(e => e.Receivable).HasColumnType("int(11)");
-            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.Penalty)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("int(11)");
+            entity.Property(e => e.Receivable)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("int(11)");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'");
             entity.Property(e => e.Type).HasMaxLength(50);
         });
 

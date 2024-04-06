@@ -51,12 +51,12 @@ namespace DinoLoan.Controllers
         }
 
         public IActionResult ViewLoan(int id) {
-            var loan = _context.Loans.ToList();
+            var loan = _context.Loans.Where(e => e.ClientId == id).ToList();
             if (loan == null)
             {
                 return NotFound();
             }
-
+            ViewData["ClientId"] = id;
             return View(loan);
         }
     }

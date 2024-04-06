@@ -48,7 +48,7 @@
             <div class="modal-body">
                 <form id="addLoan">
                     <div class="row">
-                        <input type="text" />
+                        <input type="hidded" name="ClientId" value="@ViewData["ClientId"]"/>
 
                         <div class="form-group col-md-6 mt-3">
                             <label>Date loan created</label>
@@ -121,7 +121,8 @@
     document.getElementById('addLoan').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = new FormData(this);
-    fetch('loanapi/createloan', {
+    formData.append('Status', 'None');
+    fetch('../../loanapi/createloan', {
         method: 'POST',
         body: formData
     })
