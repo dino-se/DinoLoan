@@ -39,17 +39,6 @@ namespace DinoLoan.Controllers
             return View(clientInfos);
         }
 
-        public IActionResult AddLoan(int id)
-        {
-            var client = _context.Clientinfos.FirstOrDefault(q => q.Id == id);
-            if (client == null)
-            {
-                return NotFound();
-            }
-
-            return View(client);
-        }
-
         public IActionResult ViewLoan(int id) {
             var loan = _context.Loans.Where(e => e.ClientId == id).ToList();
             if (loan == null)
