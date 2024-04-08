@@ -39,6 +39,7 @@ namespace DinoLoan.Controllers
             return View(clientInfos);
         }
 
+        [HttpGet]
         public IActionResult ViewLoan(int id) {
             var loan = _context.Loans.Where(e => e.ClientId == id).ToList();
             if (loan == null)
@@ -47,6 +48,14 @@ namespace DinoLoan.Controllers
             }
             ViewData["ClientId"] = id;
             return View(loan);
+        }
+
+        [HttpPost]
+        public IActionResult ViewLoan(Loan l) {
+             l.Status = "Pending";
+            _context.Loans.Add(l);
+            _context.SaveChanges();
+            return RedirectToAction("ViewLoan", new { id = l.ClientId });
         }
     }
 }
