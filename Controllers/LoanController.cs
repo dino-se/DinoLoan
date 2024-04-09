@@ -57,5 +57,9 @@ namespace DinoLoan.Controllers
             _context.SaveChanges();
             return RedirectToAction("ViewLoan", new { id = l.ClientId });
         }
+
+        public IActionResult Payments() {
+            return View();
+        }
     }
 }
