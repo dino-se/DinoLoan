@@ -53,13 +53,10 @@ namespace DinoLoan.Controllers
         [HttpPost]
         public IActionResult ViewLoan(Loan l) {
              l.Status = "Pending";
+             l.Collectable = l.Amount + l.InterestAmount;
             _context.Loans.Add(l);
             _context.SaveChanges();
             return RedirectToAction("ViewLoan", new { id = l.ClientId });
-        }
-
-        public IActionResult Payments() {
-            return View();
         }
     }
 }

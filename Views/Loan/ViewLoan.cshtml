@@ -15,8 +15,9 @@
             <th>#</th>
             <th>Type</th>
             <th>No Payments</th>
+            <th>Total Payments</th>
             <th>Collected</th>
-            <th>Collections</th>
+            <th>Collectables</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
@@ -28,13 +29,14 @@
                 <td>@loanData.Id</td>
                 <td>@loanData.Type</td>
                 <td>@loanData.NoOfPayment</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
+                <td>@loanData.TotalPayable</td>
+                <td>@loanData.Collected</td>
+                <td>@loanData.Collectable</td>
+                <td>@loanData.Status</td>
                 <td>
-                    <a class="btn btn-info" asp-action="Payments">Payments</a>
-                    <a class="btn btn-warning" asp-action="Update">Update</a>
-                    <a class="btn btn-danger" asp-action="Delete">Delete</a>
+                    <a class="btn btn-info" asp-controller="Payment" asp-action="Index">Payments</a>
+                    <a class="btn btn-warning" asp-action="Update">Receipt</a>
+                    @* <a class="btn btn-danger" asp-action="Delete">Delete</a> *@
                 </td>
             </tr>
         }
@@ -44,5 +46,5 @@
 @await Html.PartialAsync("_AddLoan.cshtml")
 
 @section Scripts {
-    <script src="~/js/addloanx.js"></script>
+    <script src="~/js/addloan.js"></script>
 }
