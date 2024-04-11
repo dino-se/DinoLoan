@@ -53,9 +53,20 @@ namespace DinoLoan.Controllers
         [HttpPost]
         public IActionResult ViewLoan(Loan l) {
              l.Status = "Pending";
-             l.Collectable = l.Amount + l.InterestAmount;
+            l.Collectable = l.Amount + l.InterestAmount;
+            l.DateCreated = DateTime.Now;
+
+            l.DueDate = l.Type switch
+            {
+                "Daily" => (DateTime?)l.DateCreated.AddDays(1),
+                "Weekly" => (DateTime?)l.DateCreated.AddDays(7),
+                "Monthly" => (DateTime?)l.DateCreated.AddMonths(1),
+                _ => (DateTime?)l.DateCreated,
+            };
+            l.TotalPayable = l.Collectable;
             _context.Loans.Add(l);
             _context.SaveChanges();
+
             return RedirectToAction("ViewLoan", new { id = l.ClientId });
         }
     }
