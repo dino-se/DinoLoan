@@ -33,5 +33,5 @@ public partial class Loan
 
     public DateTime DateCreated { get; set; }
 
-    public DateTime? DueDate { get; set; }
+    public DateTime DueDate { get; set; }
 }

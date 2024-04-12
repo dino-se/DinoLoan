@@ -1,4 +1,4 @@
-@model List<DinoLoan.Entity.Loan>
+@model List<DinoLoan.Entity.Payment>
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -7,34 +7,26 @@
   </ol>
 </nav>
 
-<button  class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
-
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>#</th>
-            <th>Type</th>
-            <th>No Payments</th>
-            <th>Collected</th>
-            <th>Collections</th>
+            <th>Collectables</th>
+            <th>Date</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var loanData in Model)
+        @foreach (var schedDate in Model)
         {
             <tr>
-                <td>@loanData.Id</td>
-                <td>@loanData.Type</td>
-                <td>@loanData.NoOfPayment</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
+                <td>@schedDate.PaymentId</td>
+                <td>@schedDate.Collectable</td>
+                <td>@schedDate.Date</td>
+                <td>@schedDate.Status</td>
                 <td>
-                    <a class="btn btn-info" asp-action="Details">Payments</a>
-                    <a class="btn btn-warning" asp-action="Update">Update</a>
-                    <a class="btn btn-danger" asp-action="Delete">Delete</a>
+                    <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addLoanModal">Pay</a>
                 </td>
             </tr>
         }

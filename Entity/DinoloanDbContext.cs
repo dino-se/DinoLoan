@@ -21,6 +21,8 @@ public partial class DinoloanDbContext : DbContext
 
     public virtual DbSet<Loan> Loans { get; set; }
 
+    public virtual DbSet<Payment> Payments { get; set; }
+
     public virtual DbSet<Usertype> Usertypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -89,6 +91,20 @@ public partial class DinoloanDbContext : DbContext
             entity.Property(e => e.Type)
                 .HasMaxLength(50)
                 .HasDefaultValueSql("'NULL'");
+        });
+
+        modelBuilder.Entity<Payment>(entity =>
+        {
+            entity.HasKey(e => e.PaymentId).HasName("PRIMARY");
+
+            entity.ToTable("payment");
+
+            entity.Property(e => e.PaymentId).HasColumnType("int(11)");
+            entity.Property(e => e.ClientId).HasColumnType("int(11)");
+            entity.Property(e => e.Collectable).HasPrecision(10);
+            entity.Property(e => e.Date).HasColumnType("date");
+            entity.Property(e => e.LoanId).HasColumnType("int(11)");
+            entity.Property(e => e.Status).HasMaxLength(25);
         });
 
         modelBuilder.Entity<Usertype>(entity =>
