@@ -2,8 +2,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @using (Html.BeginForm("ViewLoan", "Loan", FormMethod.Post))
-                {
+                @* @using (Html.BeginForm("ViewLoan", "Loan", FormMethod.Post))
+                { *@
+                <form action="ViewLoan" method="post">
                     <div class="row">
                         <input type="hidden" name="ClientId" value="@ViewData["ClientId"]" />
 
@@ -57,7 +58,8 @@
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save</button>
-                }
+                </form>
+                @* } *@
             </div>
         </div>
     </div>

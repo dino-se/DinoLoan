@@ -1,0 +1,41 @@
+<div class="modal" id="payLoanModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="ViewLoan" method="post">
+                    <div class="row">
+                        <input type="text" id="payId">
+                        <div class="col-md-6">
+                            <div class="card text-white bg-primary mb-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">Payments</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text" id="totalPayments">0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card text-white bg-success mb-3 ">
+                                <div class="card-header">
+                                    <h5 class="card-title">Remaining</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">0.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12 mb-3">
+                            <label>Amount to pay</label>
+                            <input type="number" id="amount" name="Amount" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

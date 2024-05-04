@@ -2,8 +2,8 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="../">Loan</a></li>
-    <li class="breadcrumb-item active">Add loan</li>
+    <li class="breadcrumb-item"><a href="../loan/viewloan">Loan</a></li>
+    <li class="breadcrumb-item active">Loan Schedule</li>
   </ol>
 </nav>
 
@@ -26,9 +26,21 @@
                 <td>@schedDate.Date</td>
                 <td>@schedDate.Status</td>
                 <td>
-                    <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addLoanModal">Pay</a>
+                    <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#payLoanModal"
+                    onclick="getPayment(@schedDate.PaymentId, @schedDate.Collectable)">Pay</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@await Html.PartialAsync("_Pay.cshtml")
+
+@section Scripts {
+    <script>
+        function getPayment(id, total) {
+            document.getElementById('payId').value = id;
+            document.getElementById('totalPayments').innerHTML = total;
+        }
+    </script>
+}
