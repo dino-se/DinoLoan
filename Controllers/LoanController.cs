@@ -79,7 +79,7 @@ namespace DinoLoan.Controllers
                     ClientId = loan.ClientId,
                     Date = loan.DateCreated.AddDays(intervalDays * (i + 1)),
                     Collectable = loan.TotalPayable / numberOfSchedules,
-                    Status = "Unpaid"
+                    Status = "1"
                 };
                 _context.Payments.Add(schedule);
                 _context.SaveChanges();

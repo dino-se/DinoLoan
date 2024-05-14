@@ -32,7 +32,7 @@
                 <td>@loanData.TotalPayable</td>
                 <td>@loanData.Collected</td>
                 <td>@loanData.Collectable</td>
-                <td>@loanData.Status</td>
+                <td>@(loanData.Collectable != 0 ? "Pending" : "Paid")</td>
                 <td>
                     <a class="btn btn-info" asp-controller="Payment" asp-action="Index" asp-route-id="@loanData.Id">Payments</a>
                     <a class="btn btn-warning" asp-action="Update">Receipt</a>

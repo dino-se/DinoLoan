@@ -26,13 +26,16 @@ namespace DinoLoan.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["ClientId"] = payment[0].ClientId;
             return View(payment);
         }
 
         [HttpPost]
-        public IActionResult Index(int id, decimal amount)
+        public IActionResult Index(int lid, int pid, decimal amount)
         {
-            Loan loan = _context.Loans.FirstOrDefault(l => l.Id == id);
+            Loan loan = _context.Loans.FirstOrDefault(l => l.Id == lid);
+            Payment payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pid);
 
             if (loan == null)
             {
@@ -43,10 +46,13 @@ namespace DinoLoan.Controllers
 
             loan.Collectable = Math.Max(loan.Collectable - amount, 0);
 
+             payment.Collectable = Math.Max(payment.Collectable - amount, 0);
+
             _context.Loans.Update(loan);
+            _context.Payments.Update(payment);
             _context.SaveChanges();
 
-             return RedirectToAction("Index", new { id });
+             return RedirectToAction("Index", new { id = lid });
         }
 
     }
