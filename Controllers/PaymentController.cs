@@ -19,15 +19,19 @@ namespace DinoLoan.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            var payment = _context.Payments.ToList();
+            var payment = _context.Payments.Where(e => e.LoanId == id).ToList();
             if (payment == null)
             {
                 return NotFound();
             }
-            // ViewData["ClientId"] = uid;
             return View(payment);
+        }
+
+        [HttpPost]
+        public IActionResult Index() {
+            return View();
         }
     }
 }

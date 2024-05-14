@@ -54,73 +54,36 @@ namespace DinoLoan.Controllers
         public IActionResult ViewLoan(Loan l) {
              l.Status = "Pending";
             l.Collectable = l.Amount + l.InterestAmount;
-            l.DateCreated = DateTime.Now;
-
-            l.DueDate = l.Type switch
-            {
-                "Daily" => l.DateCreated.AddDays(1),
-                "Weekly" => l.DateCreated.AddDays(7),
-                "Monthly" => l.DateCreated.AddMonths(1),
-                _ => l.DateCreated,
-            };
-            ;
             l.TotalPayable = l.Collectable;
+
             _context.Loans.Add(l);
             _context.SaveChanges();
 
-            CreatePaymentSchedule(l);
+             GenerateSchedule(l);
 
             return RedirectToAction("ViewLoan", new { id = l.ClientId });
         }
 
-        private void CreatePaymentSchedule(Loan loan)
-        {
-            int incrementDays = 1;
-            switch (loan.Type)
+        private void GenerateSchedule(Loan loan) {
+            int numberOfSchedules = loan.NoOfPayment;
+            var intervalDays = loan.Type.ToLower() switch
             {
-                case "Daily":
-                    incrementDays = 1;
-                    break;
-                case "Weekly":
-                    incrementDays = 7;
-                    break;
-                case "Monthly":
-                    incrementDays = 30;
-                    break;
+                "Daily" => 1,
+                "Weekly" => 7,
+                "Monthly" => 30,
+                _ => throw new ArgumentException("Loan is bonk"),
+            };
+            for (int i = 0; i < numberOfSchedules; i++) {
+                var schedule = new Payment {
+                    LoanId = loan.Id,
+                    ClientId = loan.ClientId,
+                    Date = loan.DateCreated.AddDays(intervalDays * (i + 1)),
+                    Collectable = loan.TotalPayable / numberOfSchedules,
+                    Status = "Unpaid"
+                };
+                _context.Payments.Add(schedule);
+                _context.SaveChanges();
             }
-
-            var totalDays = (loan.DueDate - loan.DateCreated).TotalDays;
-
-            if (totalDays <= 0 || incrementDays <= 0)
-            {
-
-                throw new InvalidOperationException("Invalid loan dates or increment.");
-            }
-
-            var numberOfPayments = (int)(totalDays / incrementDays);
-
-            if (numberOfPayments <= 0)
-            {
-                throw new InvalidOperationException("Invalid number of payments calculated.");
-            }
-
-            var dailyPaymentAmount = loan.Collectable / numberOfPayments;
-
-            var payments = new List<Payment>();
-
-            for (int i = 0; i < numberOfPayments; i++)
-            {
-                payments.Add(new Payment
-                {
-                    LoanId = loan.ClientId,
-                    Collectable = dailyPaymentAmount,
-                    Date = loan.DateCreated.AddDays(i * incrementDays),
-                    Status = "Pending"
-                });
-            }
-
-            _context.Payments.AddRange(payments);
-            _context.SaveChanges();
         }
     }
 }

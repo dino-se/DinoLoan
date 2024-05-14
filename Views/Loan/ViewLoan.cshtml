@@ -34,7 +34,7 @@
                 <td>@loanData.Collectable</td>
                 <td>@loanData.Status</td>
                 <td>
-                    <a class="btn btn-info" asp-controller="Payment" asp-action="Index">Payments</a>
+                    <a class="btn btn-info" asp-controller="Payment" asp-action="Index" asp-route-id="@loanData.Id">Payments</a>
                     <a class="btn btn-warning" asp-action="Update">Receipt</a>
                     @* <a class="btn btn-danger" asp-action="Delete">Delete</a> *@
                 </td>
