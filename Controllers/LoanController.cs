@@ -68,9 +68,9 @@ namespace DinoLoan.Controllers
             int numberOfSchedules = loan.NoOfPayment;
             var intervalDays = loan.Type.ToLower() switch
             {
-                "Daily" => 1,
-                "Weekly" => 7,
-                "Monthly" => 30,
+                "daily" => 1,
+                "weekly" => 7,
+                "monthly" => 30,
                 _ => throw new ArgumentException("Loan is bonk"),
             };
             for (int i = 0; i < numberOfSchedules; i++) {

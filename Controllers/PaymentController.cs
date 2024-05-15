@@ -30,8 +30,24 @@ namespace DinoLoan.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index() {
-            return View();
+        public IActionResult Index(int id, decimal amount)
+        {
+            Loan loan = _context.Loans.FirstOrDefault(l => l.Id == id);
+
+            if (loan == null)
+            {
+                return NotFound();
+            }
+
+            loan.Collected += amount;
+
+            loan.Collectable = Math.Max(loan.Collectable - amount, 0);
+
+            _context.Loans.Update(loan);
+            _context.SaveChanges();
+
+             return RedirectToAction("Index", new { id });
         }
+
     }
 }
