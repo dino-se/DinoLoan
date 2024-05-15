@@ -27,7 +27,8 @@ namespace DinoLoan.Controllers
                 return NotFound();
             }
 
-            ViewData["ClientId"] = payment[0].ClientId;
+            ViewData["ClientId"] = payment.FirstOrDefault()?.ClientId;
+
             return View(payment);
         }
 

@@ -40,11 +40,5 @@
 @await Html.PartialAsync("_Pay.cshtml")
 
 @section Scripts {
-    <script>
-        function getPayment(lid, total, pid) {
-            document.getElementById('loanId').value = lid;
-            document.getElementById('payId').value = pid;
-            document.getElementById('totalPayments').innerHTML = total;
-        }
-    </script>
+    <script src="~/js/payment.js"></script>
 }
