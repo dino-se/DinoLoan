@@ -35,10 +35,10 @@ namespace DinoLoan.Controllers
         [HttpPost]
         public IActionResult Index(int lid, int pid, decimal amount)
         {
-            Loan loan = _context.Loans.FirstOrDefault(l => l.Id == lid);
-            Payment payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pid);
+            Loan? loan = _context.Loans.FirstOrDefault(l => l.Id == lid);
+            Payment? payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pid);
 
-            if (loan == null)
+            if (loan == null || payment == null)
             {
                 return NotFound();
             }
@@ -47,13 +47,13 @@ namespace DinoLoan.Controllers
 
             loan.Collectable = Math.Max(loan.Collectable - amount, 0);
 
-             payment.Collectable = Math.Max(payment.Collectable - amount, 0);
+            payment.Collectable = Math.Max(payment.Collectable - amount, 0);
 
             _context.Loans.Update(loan);
             _context.Payments.Update(payment);
             _context.SaveChanges();
 
-             return RedirectToAction("Index", new { id = lid });
+            return RedirectToAction("Index", new { id = lid });
         }
 
     }

@@ -88,9 +88,7 @@ public partial class DinoloanDbContext : DbContext
                 .HasMaxLength(50)
                 .HasDefaultValueSql("'NULL'");
             entity.Property(e => e.TotalPayable).HasPrecision(10);
-            entity.Property(e => e.Type)
-                .HasMaxLength(50)
-                .HasDefaultValueSql("'NULL'");
+            entity.Property(e => e.Type).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Payment>(entity =>

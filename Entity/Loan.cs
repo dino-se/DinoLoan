@@ -9,7 +9,7 @@ public partial class Loan
 
     public int ClientId { get; set; }
 
-    public string? Type { get; set; }
+    public string Type { get; set; }  = null!;
 
     public decimal Amount { get; set; }
 
