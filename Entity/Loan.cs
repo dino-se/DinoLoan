@@ -9,7 +9,7 @@ public partial class Loan
 
     public int ClientId { get; set; }
 
-    public string Type { get; set; }  = null!;
+    public string Type { get; set; } = null!;
 
     public decimal Amount { get; set; }
 
@@ -21,8 +21,6 @@ public partial class Loan
 
     public decimal Deduction { get; set; }
 
-    public string? Status { get; set; }
-
     public decimal Receivable { get; set; }
 
     public decimal TotalPayable { get; set; }
@@ -32,6 +30,4 @@ public partial class Loan
     public decimal Collectable { get; set; }
 
     public DateTime DateCreated { get; set; }
-
-    public DateTime? DueDate { get; set; }
 }

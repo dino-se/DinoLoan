@@ -40,7 +40,8 @@ namespace DinoLoan.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewLoan(int id) {
+        public IActionResult ViewLoan(int id)
+        {
             var loan = _context.Loans.Where(e => e.ClientId == id).ToList();
             if (loan == null)
             {
@@ -51,20 +52,21 @@ namespace DinoLoan.Controllers
         }
 
         [HttpPost]
-        public IActionResult ViewLoan(Loan l) {
-             l.Status = "Pending";
+        public IActionResult ViewLoan(Loan l)
+        {
             l.Collectable = l.Amount + l.InterestAmount;
             l.TotalPayable = l.Collectable;
 
             _context.Loans.Add(l);
             _context.SaveChanges();
 
-             GenerateSchedule(l);
+            GenerateSchedule(l);
 
             return RedirectToAction("ViewLoan", new { id = l.ClientId });
         }
 
-        private void GenerateSchedule(Loan loan) {
+        private void GenerateSchedule(Loan loan)
+        {
             int numberOfSchedules = loan.NoOfPayment;
             var intervalDays = loan.Type.ToLower() switch
             {
@@ -73,13 +75,14 @@ namespace DinoLoan.Controllers
                 "monthly" => 30,
                 _ => throw new ArgumentException("Loan is bonk"),
             };
-            for (int i = 0; i < numberOfSchedules; i++) {
-                var schedule = new Payment {
+            for (int i = 0; i < numberOfSchedules; i++)
+            {
+                var schedule = new Payment
+                {
                     LoanId = loan.Id,
                     ClientId = loan.ClientId,
                     Date = loan.DateCreated.AddDays(intervalDays * (i + 1)),
-                    Collectable = loan.TotalPayable / numberOfSchedules,
-                    Status = "1"
+                    Collectable = Math.Round(loan.TotalPayable / numberOfSchedules),
                 };
                 _context.Payments.Add(schedule);
                 _context.SaveChanges();

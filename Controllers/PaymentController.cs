@@ -44,9 +44,7 @@ namespace DinoLoan.Controllers
             }
 
             loan.Collected += amount;
-
             loan.Collectable = Math.Max(loan.Collectable - amount, 0);
-
             payment.Collectable = Math.Max(payment.Collectable - amount, 0);
 
             _context.Loans.Update(loan);

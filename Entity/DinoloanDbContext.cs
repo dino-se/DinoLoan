@@ -77,16 +77,10 @@ public partial class DinoloanDbContext : DbContext
             entity.Property(e => e.Collected).HasPrecision(10);
             entity.Property(e => e.DateCreated).HasColumnType("date");
             entity.Property(e => e.Deduction).HasPrecision(10);
-            entity.Property(e => e.DueDate)
-                .HasDefaultValueSql("'NULL'")
-                .HasColumnType("date");
             entity.Property(e => e.Interest).HasPrecision(10);
             entity.Property(e => e.InterestAmount).HasPrecision(10);
             entity.Property(e => e.NoOfPayment).HasColumnType("int(11)");
             entity.Property(e => e.Receivable).HasPrecision(10);
-            entity.Property(e => e.Status)
-                .HasMaxLength(50)
-                .HasDefaultValueSql("'NULL'");
             entity.Property(e => e.TotalPayable).HasPrecision(10);
             entity.Property(e => e.Type).HasMaxLength(50);
         });
@@ -102,7 +96,6 @@ public partial class DinoloanDbContext : DbContext
             entity.Property(e => e.Collectable).HasPrecision(10);
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.LoanId).HasColumnType("int(11)");
-            entity.Property(e => e.Status).HasMaxLength(25);
         });
 
         modelBuilder.Entity<Usertype>(entity =>

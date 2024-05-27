@@ -1,13 +1,13 @@
 @model List<DinoLoan.Entity.Loan>
 
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="../">Loan</a></li>
-    <li class="breadcrumb-item active">Add loan</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Loan</a></li>
+        <li class="breadcrumb-item active">Add loan</li>
+    </ol>
 </nav>
 
-<button  class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
+<button class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
 
 <table class="table table-hover table-bordered">
     <thead>
@@ -32,11 +32,19 @@
                 <td>@loanData.TotalPayable</td>
                 <td>@loanData.Collected</td>
                 <td>@loanData.Collectable</td>
-                <td>@(loanData.Collectable != 0 ? "Pending" : "Paid")</td>
                 <td>
-                    <a class="btn btn-info" asp-controller="Payment" asp-action="Index" asp-route-id="@loanData.Id">Payments</a>
-                    <a class="btn btn-warning" asp-action="Update">Receipt</a>
-                    @* <a class="btn btn-danger" asp-action="Delete">Delete</a> *@
+                    <span class="@(loanData.Collectable != 0 ? "badge rounded-pill bg-primary" : "badge rounded-pill bg-success")">
+                        @(loanData.Collectable != 0 ? "Pending" : "Paid")
+                    </span>
+                </td>
+
+                <td>
+                    <a class="btn btn-info" asp-controller="Payment" asp-action="Index"
+                        asp-route-id="@loanData.Id">Payments</a>
+                    @if (loanData.Collected != 0)
+                    {
+                        <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#transactionModal">Receipt</a>
+                    }
                 </td>
             </tr>
         }
@@ -44,6 +52,7 @@
 </table>
 
 @await Html.PartialAsync("_AddLoan.cshtml")
+@await Html.PartialAsync("_Transaction.cshtml")
 
 @section Scripts {
     <script src="~/js/addloan.js"></script>

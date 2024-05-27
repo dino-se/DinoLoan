@@ -25,7 +25,11 @@
                 <td>@schedDate.PaymentId</td>
                 <td>@schedDate.Collectable</td>
                 <td>@schedDate.Date.ToString("MMM dd yyyy")</td>
-                <td>@(schedDate.Collectable != 0 ? "Unpaid" : "Paid")</td>
+                <td>
+                     <span class="@(schedDate.Collectable != 0 ? "badge rounded-pill bg-primary" : "badge rounded-pill bg-success")">
+                        @(schedDate.Collectable != 0 ? "Unpaid" : "Paid")
+                    </span>
+                </td>
                 <td>
                     @if (schedDate.Collectable != 0)
                     {
