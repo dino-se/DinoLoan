@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using DinoLoan.Entity;
+using DinoLoan.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -33,25 +34,25 @@ namespace DinoLoan.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(int lid, int pid, decimal amount)
+        public IActionResult Index(PaymentViewModel pvm)
         {
-            Loan? loan = _context.Loans.FirstOrDefault(l => l.Id == lid);
-            Payment? payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pid);
+            Loan? loan = _context.Loans.FirstOrDefault(l => l.Id == pvm.Lid);
+            Payment? payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pvm.Pid);
 
             if (loan == null || payment == null)
             {
                 return NotFound();
             }
 
-            loan.Collected += amount;
-            loan.Collectable = Math.Max(loan.Collectable - amount, 0);
-            payment.Collectable = Math.Max(payment.Collectable - amount, 0);
+            loan.Collected += pvm.Amnt;
+            loan.Collectable = Math.Max(loan.Collectable - pvm.Amnt, 0);
+            payment.Collectable = Math.Max(payment.Collectable - pvm.Amnt, 0);
 
             _context.Loans.Update(loan);
             _context.Payments.Update(payment);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", new { id = lid });
+            return RedirectToAction("Index", new { id = pvm.Lid });
         }
 
     }
