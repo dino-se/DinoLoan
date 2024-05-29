@@ -23,6 +23,8 @@ public partial class DinoloanDbContext : DbContext
 
     public virtual DbSet<Payment> Payments { get; set; }
 
+    public virtual DbSet<Transaction> Transactions { get; set; }
+
     public virtual DbSet<Usertype> Usertypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -95,6 +97,20 @@ public partial class DinoloanDbContext : DbContext
             entity.Property(e => e.ClientId).HasColumnType("int(11)");
             entity.Property(e => e.Collectable).HasPrecision(10);
             entity.Property(e => e.Date).HasColumnType("date");
+            entity.Property(e => e.LoanId).HasColumnType("int(11)");
+        });
+
+        modelBuilder.Entity<Transaction>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("transaction");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.Amount).HasPrecision(10);
+            entity.Property(e => e.Date)
+                .HasDefaultValueSql("'current_timestamp()'")
+                .HasColumnType("date");
             entity.Property(e => e.LoanId).HasColumnType("int(11)");
         });
 

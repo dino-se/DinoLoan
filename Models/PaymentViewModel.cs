@@ -8,4 +8,6 @@ public class PaymentViewModel
 
     public decimal Amnt { get; set; }
 
+    public decimal Over { get; set; }
+
 }

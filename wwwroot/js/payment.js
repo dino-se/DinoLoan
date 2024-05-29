@@ -1,6 +1,7 @@
 function getPayment(lid, total, pid) {
   document.getElementById("loanId").value = lid;
   document.getElementById("payId").value = pid;
+  document.getElementById("currentAmmount").value = total;
   document.getElementById("totalPayments").innerHTML = total;
 }
 

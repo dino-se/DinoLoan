@@ -52,7 +52,20 @@ namespace DinoLoan.Controllers
             _context.Payments.Update(payment);
             _context.SaveChanges();
 
+            LogTransaction(pvm);
+
             return RedirectToAction("Index", new { id = pvm.Lid });
+        }
+
+        private void LogTransaction(PaymentViewModel pvm) {
+            var transaction = new Transaction
+            {
+                LoanId = pvm.Lid,
+                Amount = pvm.Amnt
+            };
+
+            _context.Transactions.Add(transaction);
+           _context.SaveChanges();
         }
 
     }
