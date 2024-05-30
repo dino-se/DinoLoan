@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DinoLoan.Entity;
+using DinoLoan.ViewModels;
 
 namespace DinoLoan.Controllers
 {
@@ -37,15 +38,20 @@ namespace DinoLoan.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_context.Usertypes.Where(q=> q.Id == id).FirstOrDefault());
+            return View(_context.Usertypes.Where(q=> q.Id == id).Select(q => new UserTypeViewModel {
+                Name = q.Name,
+            }).FirstOrDefault());
         }
 
         [HttpPost]
-        public ActionResult UpdateUserType(int id, string name)
+        public ActionResult UpdateUserType(int id, UserTypeViewModel name)
         {
-            var userType = _context.Usertypes.Find(id);
-            userType.Name = name;
-            _context.SaveChanges();
+            if(ModelState.IsValid)
+            {
+                var userType = _context.Usertypes.Find(id);
+                userType.Name = name.Name;
+                _context.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }

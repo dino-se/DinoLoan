@@ -112,6 +112,7 @@ public partial class DinoloanDbContext : DbContext
                 .HasDefaultValueSql("'current_timestamp()'")
                 .HasColumnType("date");
             entity.Property(e => e.LoanId).HasColumnType("int(11)");
+            entity.Property(e => e.PaymentId).HasPrecision(10);
         });
 
         modelBuilder.Entity<Usertype>(entity =>

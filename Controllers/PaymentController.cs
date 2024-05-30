@@ -60,6 +60,7 @@ namespace DinoLoan.Controllers
         private void LogTransaction(PaymentViewModel pvm) {
             var transaction = new Transaction
             {
+                PaymentId = pvm.Pid,
                 LoanId = pvm.Lid,
                 Amount = pvm.Amnt
             };
