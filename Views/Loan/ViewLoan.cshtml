@@ -43,7 +43,8 @@
                         asp-route-id="@loanData.Id">Payments</a>
                     @if (loanData.Collected != 0)
                     {
-                        <a class="btn btn-warning open-modal" data-bs-toggle="modal" data-bs-target="#transactionModal" onclick="ViewTransaction(@loanData.Id)">Receipt</a>
+                        <a class="btn btn-warning open-modal" data-bs-toggle="modal" data-bs-target="#transactionModal"
+                            onclick="ViewTransaction(@loanData.Id)">Receipt</a>
                     }
                 </td>
             </tr>
@@ -52,7 +53,6 @@
 </table>
 
 @await Html.PartialAsync("_AddLoan.cshtml")
-@* @await Html.PartialAsync("_Transaction.cshtml") *@
 
 <div id="transactionModal" class="modal" role="dialog">
     <div class="modal-dialog" role="document">

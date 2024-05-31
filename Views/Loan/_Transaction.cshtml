@@ -1,29 +1,23 @@
 @model IEnumerable<DinoLoan.Entity.Transaction>
 
-@* <div class="modal" id="transactionModal" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content"> *@
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr class="text-center">
-                            <th class="col">#</th>
-                            <th class="col">Amount</th>
-                            <th class="col">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var tData in Model)
-                        {
-                            <tr>
-                                <th>@tData.Id</th>
-                                <td>@tData.Amount</td>
-                                <td>@tData.Date.ToString("MMM dd yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        @* </div>
-    </div>
-</div> *@
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th class="col">#</th>
+                <th class="col">Amount</th>
+                <th class="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tData in Model)
+            {
+                <tr>
+                    <th>@tData.Id</th>
+                    <td>@tData.Amount</td>
+                    <td>@tData.Date.ToString("MMM dd yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

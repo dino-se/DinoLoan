@@ -24,11 +24,6 @@ namespace DinoLoan.Controllers
         {
             // var payment = _context.Payments.Where(e => e.LoanId == id).ToList();
 
-            // var transaction = _context.Transactions.Where(e => e.LoanId == id).ToList();
-
-
-            // payment.ForEach(transaction);
-
             var payment = (
                 from paymentz in _context.Payments.Where(e => e.LoanId == id)
                 join transaction in _context.Transactions
