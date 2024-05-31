@@ -22,7 +22,28 @@ namespace DinoLoan.Controllers
         [HttpGet]
         public IActionResult Index(int id)
         {
-            var payment = _context.Payments.Where(e => e.LoanId == id).ToList();
+            // var payment = _context.Payments.Where(e => e.LoanId == id).ToList();
+
+            // var transaction = _context.Transactions.Where(e => e.LoanId == id).ToList();
+
+
+            // payment.ForEach(transaction);
+
+            var payment = (
+                from paymentz in _context.Payments.Where(e => e.LoanId == id)
+                join transaction in _context.Transactions
+                on paymentz.PaymentId equals transaction.PaymentId into paymentGroup
+                from transaction in paymentGroup.DefaultIfEmpty()
+                group transaction by paymentz into paymentTransactionGroup
+                select new Payment
+                {
+                    PaymentId = paymentTransactionGroup.Key.PaymentId,
+                    LoanId = paymentTransactionGroup.Key.LoanId,
+                    ClientId = paymentTransactionGroup.Key.ClientId,
+                   Collectable = paymentTransactionGroup.Key.Collectable - paymentTransactionGroup.Sum(t => t.Amount)
+                }
+            ).ToList();
+
             if (payment == null)
             {
                 return NotFound();
@@ -46,10 +67,10 @@ namespace DinoLoan.Controllers
 
             loan.Collected += pvm.Amnt;
             loan.Collectable = Math.Max(loan.Collectable - pvm.Amnt, 0);
-            payment.Collectable = Math.Max(payment.Collectable - pvm.Amnt, 0);
+            //payment.Collectable = Math.Max(payment.Collectable - pvm.Amnt, 0);
 
             _context.Loans.Update(loan);
-            _context.Payments.Update(payment);
+            //_context.Payments.Update(payment);
             _context.SaveChanges();
 
             LogTransaction(pvm);
