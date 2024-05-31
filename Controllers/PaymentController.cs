@@ -40,7 +40,8 @@ namespace DinoLoan.Controllers
                     PaymentId = paymentTransactionGroup.Key.PaymentId,
                     LoanId = paymentTransactionGroup.Key.LoanId,
                     ClientId = paymentTransactionGroup.Key.ClientId,
-                   Collectable = paymentTransactionGroup.Key.Collectable - paymentTransactionGroup.Sum(t => t.Amount)
+                    Collectable = paymentTransactionGroup.Key.Collectable - paymentTransactionGroup.Sum(t => t.Amount),
+                    Date = paymentTransactionGroup.Key.Date
                 }
             ).ToList();
 

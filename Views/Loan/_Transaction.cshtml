@@ -1,7 +1,9 @@
-<div class="modal" id="transactionModal" role="dialog">
+@model IEnumerable<DinoLoan.Entity.Transaction>
+
+@* <div class="modal" id="transactionModal" role="dialog">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body table-responsive">
+        <div class="modal-content"> *@
+            <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr class="text-center">
@@ -11,16 +13,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>Test</th>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
+                        @foreach (var tData in Model)
+                        {
+                            <tr>
+                                <th>@tData.Id</th>
+                                <td>@tData.Amount</td>
+                                <td>@tData.Date.ToString("MMM dd yyyy")</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
-
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
-        </div>
+        @* </div>
     </div>
-</div>
+</div> *@

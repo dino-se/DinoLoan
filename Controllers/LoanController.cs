@@ -51,11 +51,11 @@ namespace DinoLoan.Controllers
             return View(loan);
         }
 
-        // public IActionResult ViewTransaction(int id)
-        // {
-        //     var transactionsList = _context.Transactions.Where(c => c.LoanId == id).ToList();
-        //     return PartialView("_Transaction.cshtml", transactionsList);
-        // }
+        public IActionResult ViewTransaction(int id)
+        {
+            var transactionsList = _context.Transactions.Where(c => c.LoanId == id).ToList();
+            return PartialView("Views/Loan/_Transaction.cshtml", transactionsList);
+        }
 
         [HttpPost]
         public IActionResult ViewLoan(Loan l)

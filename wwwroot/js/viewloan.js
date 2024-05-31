@@ -13,3 +13,18 @@ function calculateAmounts() {
 document.getElementById('amount').addEventListener('input', calculateAmounts);
 document.getElementById('interest').addEventListener('input', calculateAmounts);
 document.getElementById('deduction').addEventListener('input', calculateAmounts);
+
+
+async function ViewTransaction(itemId) {
+    try {
+        const response = await fetch(`/Loan/ViewTransaction?id=${itemId}`);
+        if (response.ok) {
+            const data = await response.text();
+            document.getElementById('modalList').innerHTML = data;
+        } else {
+            console.error('Failed to fetch data');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
