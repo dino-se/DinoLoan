@@ -27,16 +27,16 @@ namespace DinoLoan.Controllers
             var payment = (
                 from paymentz in _context.Payments.Where(e => e.LoanId == id)
                 join transaction in _context.Transactions
-                on paymentz.PaymentId equals transaction.PaymentId into paymentGroup
-                from transaction in paymentGroup.DefaultIfEmpty()
-                group transaction by paymentz into paymentTransactionGroup
+                on paymentz.PaymentId equals transaction.PaymentId into pGroup
+                from transaction in pGroup.DefaultIfEmpty()
+                group transaction by paymentz into ptGroup
                 select new Payment
                 {
-                    PaymentId = paymentTransactionGroup.Key.PaymentId,
-                    LoanId = paymentTransactionGroup.Key.LoanId,
-                    ClientId = paymentTransactionGroup.Key.ClientId,
-                    Collectable = paymentTransactionGroup.Key.Collectable - paymentTransactionGroup.Sum(t => t.Amount),
-                    Date = paymentTransactionGroup.Key.Date
+                    PaymentId = ptGroup.Key.PaymentId,
+                    LoanId = ptGroup.Key.LoanId,
+                    ClientId = ptGroup.Key.ClientId,
+                    Collectable = ptGroup.Key.Collectable - ptGroup.Sum(t => t.Amount),
+                    Date = ptGroup.Key.Date
                 }
             ).ToList();
 

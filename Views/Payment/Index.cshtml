@@ -30,11 +30,13 @@
                         @(schedDate.Collectable != 0 ? "Unpaid" : "Paid")
                     </span>
                 </td>
-                <td>
+                <td class="text-center">
                     @if (schedDate.Collectable != 0)
                     {
                         <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#payLoanModal"
                             onclick="getPayment(@schedDate.LoanId, @schedDate.Collectable, @schedDate.PaymentId)">Pay</a>
+                    } else {
+                        <img src="~/img/check_circle.svg" alt="Check"/>
                     }
                 </td>
             </tr>
