@@ -24,21 +24,7 @@ namespace DinoLoan.Controllers
         {
             // var payment = _context.Payments.Where(e => e.LoanId == id).ToList();
 
-            var payment = (
-                from paymentz in _context.Payments.Where(e => e.LoanId == id)
-                join transaction in _context.Transactions
-                on paymentz.PaymentId equals transaction.PaymentId into pGroup
-                from transaction in pGroup.DefaultIfEmpty()
-                group transaction by paymentz into ptGroup
-                select new Payment
-                {
-                    PaymentId = ptGroup.Key.PaymentId,
-                    LoanId = ptGroup.Key.LoanId,
-                    ClientId = ptGroup.Key.ClientId,
-                    Collectable = ptGroup.Key.Collectable - ptGroup.Sum(t => t.Amount),
-                    Date = ptGroup.Key.Date
-                }
-            ).ToList();
+            var payment = GetPayments(id);
 
             if (payment == null)
             {
@@ -74,7 +60,8 @@ namespace DinoLoan.Controllers
             return RedirectToAction("Index", new { id = pvm.Lid });
         }
 
-        private void LogTransaction(PaymentViewModel pvm) {
+        private void LogTransaction(PaymentViewModel pvm)
+        {
             var transaction = new Transaction
             {
                 PaymentId = pvm.Pid,
@@ -83,7 +70,27 @@ namespace DinoLoan.Controllers
             };
 
             _context.Transactions.Add(transaction);
-           _context.SaveChanges();
+            _context.SaveChanges();
+        }
+
+        private List<Payment> GetPayments(int loanID)
+        {
+            var paymentList =
+               from paymentz in _context.Payments.Where(e => e.LoanId == loanID)
+               join transaction in _context.Transactions
+               on paymentz.PaymentId equals transaction.PaymentId into pGroup
+               from transaction in pGroup.DefaultIfEmpty()
+               group transaction by paymentz into ptGroup
+               select new Payment
+               {
+                   PaymentId = ptGroup.Key.PaymentId,
+                   LoanId = ptGroup.Key.LoanId,
+                   ClientId = ptGroup.Key.ClientId,
+                   Collectable = ptGroup.Key.Collectable - ptGroup.Sum(t => t.Amount),
+                   Date = ptGroup.Key.Date
+               };
+
+            return paymentList.ToList(); ;
         }
 
     }
