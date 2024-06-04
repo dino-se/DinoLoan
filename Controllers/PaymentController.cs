@@ -40,9 +40,9 @@ namespace DinoLoan.Controllers
         public IActionResult Index(PaymentViewModel pvm)
         {
             Loan? loan = _context.Loans.FirstOrDefault(l => l.Id == pvm.Lid);
-            Payment? payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pvm.Pid);
+            // Payment? payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pvm.Pid);
 
-            if (loan == null || payment == null)
+            if (loan == null)
             {
                 return NotFound();
             }
@@ -62,14 +62,29 @@ namespace DinoLoan.Controllers
 
         private void LogTransaction(PaymentViewModel pvm)
         {
-            var transaction = new Transaction
-            {
-                PaymentId = pvm.Pid,
-                LoanId = pvm.Lid,
-                Amount = pvm.Amnt
-            };
+            decimal tAmount = pvm.Amnt;
+            var payments = GetPayments(pvm.Lid);
 
-            _context.Transactions.Add(transaction);
+            foreach (var payment in payments)
+            {
+                if (tAmount <= 0)
+                {
+                    break;
+                }
+
+                decimal amountToLog = Math.Min(tAmount, payment.Collectable);
+
+                var transaction = new Transaction
+                {
+                    PaymentId = payment.PaymentId,
+                    LoanId = pvm.Lid,
+                    Amount = amountToLog
+                };
+
+                _context.Transactions.Add(transaction);
+                tAmount -= amountToLog;
+            }
+
             _context.SaveChanges();
         }
 
