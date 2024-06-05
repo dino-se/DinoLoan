@@ -74,15 +74,18 @@ namespace DinoLoan.Controllers
 
                 decimal amountToLog = Math.Min(tAmount, payment.Collectable);
 
-                var transaction = new Transaction
+                if (amountToLog > 0)
                 {
-                    PaymentId = payment.PaymentId,
-                    LoanId = pvm.Lid,
-                    Amount = amountToLog
-                };
+                    var transaction = new Transaction
+                    {
+                        PaymentId = payment.PaymentId,
+                        LoanId = pvm.Lid,
+                        Amount = amountToLog
+                    };
 
-                _context.Transactions.Add(transaction);
-                tAmount -= amountToLog;
+                    _context.Transactions.Add(transaction);
+                    tAmount -= amountToLog;
+                }
             }
 
             _context.SaveChanges();
