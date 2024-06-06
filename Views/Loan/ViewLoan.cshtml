@@ -9,48 +9,56 @@
 
 <button class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
 
-<table class="table table-hover table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Type</th>
-            <th>No Payments</th>
-            <th>Total Payments</th>
-            <th>Collected</th>
-            <th>Collectables</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var loanData in Model)
-        {
+@if (Model.Any())
+{
+    <table class="table table-hover table-bordered">
+        <thead>
             <tr>
-                <td>@loanData.Id</td>
-                <td>@loanData.Type</td>
-                <td>@loanData.NoOfPayment</td>
-                <td>@loanData.TotalPayable</td>
-                <td>@loanData.Collected</td>
-                <td>@loanData.Collectable</td>
-                <td>
-                    <span class="@(loanData.Collectable != 0 ? "badge rounded-pill bg-primary" : "badge rounded-pill bg-success")">
-                        @(loanData.Collectable != 0 ? "Pending" : "Paid")
-                    </span>
-                </td>
-
-                <td>
-                    <a class="btn btn-info" asp-controller="Payment" asp-action="Index"
-                        asp-route-id="@loanData.Id">Payments</a>
-                    @if (loanData.Collected != 0)
-                    {
-                        <a class="btn btn-warning open-modal" data-bs-toggle="modal" data-bs-target="#transactionModal"
-                            onclick="ViewTransaction(@loanData.Id)">Receipt</a>
-                    }
-                </td>
+                <th>#</th>
+                <th>Type</th>
+                <th>No Payments</th>
+                <th>Total Payments</th>
+                <th>Collected</th>
+                <th>Collectables</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var loanData in Model)
+            {
+                <tr>
+                    <td>@loanData.Id</td>
+                    <td>@loanData.Type</td>
+                    <td>@loanData.NoOfPayment</td>
+                    <td>@loanData.TotalPayable</td>
+                    <td>@loanData.Collected</td>
+                    <td>@loanData.Collectable</td>
+                    <td>
+                        <span
+                            class="@(loanData.Collectable != 0 ? "badge rounded-pill bg-primary" : "badge rounded-pill bg-success")">
+                            @(loanData.Collectable != 0 ? "Pending" : "Paid")
+                        </span>
+                    </td>
+
+                    <td>
+                        <a class="btn btn-info" asp-controller="Payment" asp-action="Index"
+                            asp-route-id="@loanData.Id">Payments</a>
+                        @if (loanData.Collected != 0)
+                        {
+                            <a class="btn btn-warning open-modal" data-bs-toggle="modal" data-bs-target="#transactionModal"
+                                onclick="ViewTransaction(@loanData.Id)">Receipt</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No loans available.</p>
+}
 
 @await Html.PartialAsync("_AddLoan.cshtml")
 
@@ -59,7 +67,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div id="modalList"></div>
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

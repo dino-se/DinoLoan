@@ -23,7 +23,7 @@
         {
             <tr>
                 <td>@schedDate.PaymentId</td>
-                <td>@schedDate.Collectable</td>
+                <td>@schedDate.Collectable.ToString("F0")</td>
                 <td>@schedDate.Date.ToString("MMM dd yyyy")</td>
                 <td class="text-center">
                      <span class="@(schedDate.Collectable != 0 ? "badge rounded-pill bg-primary" : "badge rounded-pill bg-success")">
