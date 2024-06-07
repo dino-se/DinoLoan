@@ -9,8 +9,36 @@
 
 <button class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
 
+<div class="card text-white bg-primary mb-3">
+    <div class="card-header">
+        <h5 class="card-title">Borrowers</h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">0.00</p>
+    </div>
+</div>
+
+@* <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-success mb-4 mt-4" data-bs-toggle="modal" data-bs-target="#addLoanModal">Add new loan</button>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">Borrowers</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">0.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
 @if (Model.Any())
 {
+    <div class="container table-responsive">
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
@@ -54,6 +82,7 @@
             }
         </tbody>
     </table>
+    </div>
 }
 else
 {

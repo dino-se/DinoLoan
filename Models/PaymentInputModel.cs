@@ -1,6 +1,6 @@
 namespace DinoLoan.Models;
 
-public class PaymentViewModel
+public class PaymentInputModel
 {
     public int Lid { get; set; }
 

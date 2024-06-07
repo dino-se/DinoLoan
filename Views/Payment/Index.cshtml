@@ -1,4 +1,4 @@
-@model List<DinoLoan.Entity.Payment>
+@model IEnumerable<DinoLoan.ViewModels.PaymentViewModel>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -26,8 +26,9 @@
                 <td>@schedDate.Collectable.ToString("F0")</td>
                 <td>@schedDate.Date.ToString("MMM dd yyyy")</td>
                 <td class="text-center">
-                     <span class="@(schedDate.Collectable != 0 ? "badge rounded-pill bg-primary" : "badge rounded-pill bg-success")">
-                        @(schedDate.Collectable != 0 ? "Unpaid" : "Paid")
+                    <span
+                        class="badge rounded-pill @(schedDate.Collectable != 0 ? (schedDate.Collectable == schedDate.CollectableOG ? "bg-primary" : "bg-warning") : "bg-success")">
+                        @(schedDate.Collectable != 0 ? (schedDate.Collectable == schedDate.CollectableOG ? "Unpaid" : "Partial") : "Paid")
                     </span>
                 </td>
                 <td class="text-center">
@@ -35,8 +36,10 @@
                     {
                         <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#payLoanModal"
                             onclick="getPayment(@schedDate.LoanId, @schedDate.Collectable, @schedDate.PaymentId)">Pay</a>
-                    } else {
-                        <img src="~/img/check_circle.svg" alt="Check"/>
+                    }
+                    else
+                    {
+                        <img src="~/img/check_circle.svg" alt="Check">
                     }
                 </td>
             </tr>

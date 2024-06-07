@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DinoLoan.Entity;
 using DinoLoan.Models;
+using DinoLoan.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -37,7 +38,7 @@ namespace DinoLoan.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(PaymentViewModel pvm)
+        public IActionResult Index(PaymentInputModel pvm)
         {
             Loan? loan = _context.Loans.FirstOrDefault(l => l.Id == pvm.Lid);
             // Payment? payment = _context.Payments.FirstOrDefault(l => l.PaymentId == pvm.Pid);
@@ -60,7 +61,7 @@ namespace DinoLoan.Controllers
             return RedirectToAction("Index", new { id = pvm.Lid });
         }
 
-        private void LogTransaction(PaymentViewModel pvm)
+        private void LogTransaction(PaymentInputModel pvm)
         {
             decimal tAmount = pvm.Amnt;
             var payments = GetPayments(pvm.Lid);
@@ -91,7 +92,7 @@ namespace DinoLoan.Controllers
             _context.SaveChanges();
         }
 
-        private List<Payment> GetPayments(int loanID)
+        private List<PaymentViewModel> GetPayments(int loanID)
         {
             var paymentList =
                from paymentz in _context.Payments.Where(e => e.LoanId == loanID)
@@ -99,16 +100,17 @@ namespace DinoLoan.Controllers
                on paymentz.PaymentId equals transaction.PaymentId into pGroup
                from transaction in pGroup.DefaultIfEmpty()
                group transaction by paymentz into ptGroup
-               select new Payment
+               select new PaymentViewModel
                {
                    PaymentId = ptGroup.Key.PaymentId,
                    LoanId = ptGroup.Key.LoanId,
                    ClientId = ptGroup.Key.ClientId,
                    Collectable = ptGroup.Key.Collectable - ptGroup.Sum(t => t.Amount),
+                   CollectableOG = ptGroup.Key.Collectable,
                    Date = ptGroup.Key.Date
                };
 
-            return paymentList.ToList(); ;
+            return paymentList.ToList();
         }
 
     }
