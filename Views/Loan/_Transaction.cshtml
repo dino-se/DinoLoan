@@ -1,12 +1,13 @@
 @model IEnumerable<DinoLoan.Entity.Transaction>
 
-<div class="table-responsive">
-    <table class="table table-hover table-bordered">
+<div id="printableTable">
+    <table class="table table-bordered">
         <thead>
-            <tr class="text-center">
-                <th class="col">#</th>
-                <th class="col">Amount</th>
-                <th class="col">Date</th>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
                     <th>@tData.Id</th>
                     <td>@tData.Amount</td>
                     <td>@tData.Date.ToString("MMM dd yyyy")</td>
+                    <td><button class="btn btn-info" onclick="printTable()">Print</button></td>
                 </tr>
             }
         </tbody>
