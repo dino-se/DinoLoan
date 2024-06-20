@@ -15,6 +15,8 @@ public partial class DinoloanDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Account> Accounts { get; set; }
+
     public virtual DbSet<Book> Books { get; set; }
 
     public virtual DbSet<Clientinfo> Clientinfos { get; set; }
@@ -33,6 +35,17 @@ public partial class DinoloanDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Account>(entity =>
+        {
+            entity.HasKey(e => e.AccountId).HasName("PRIMARY");
+
+            entity.ToTable("account");
+
+            entity.Property(e => e.AccountId).HasColumnType("int(11)");
+            entity.Property(e => e.Password).HasMaxLength(50);
+            entity.Property(e => e.Username).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<Book>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
