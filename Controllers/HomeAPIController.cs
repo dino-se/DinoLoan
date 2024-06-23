@@ -18,11 +18,4 @@ public class LoanAPIController : Controller
     {
         return View();
     }
-
-    public IActionResult CreateLoan(Loan l)
-    {
-        _context.Loans.Add(l);
-        _context.SaveChanges();
-        return Ok();
-    }
 }

@@ -8,9 +8,11 @@ using Microsoft.Extensions.Logging;
 using DinoLoan.Entity;
 using DinoLoan.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DinoLoan.Controllers
 {
+    [Authorize]
     public class ClientController : Controller
     {
         private readonly DinoloanDbContext _context;

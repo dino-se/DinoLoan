@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using DinoLoan.Entity;
 using DinoLoan.Models;
 using DinoLoan.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace DinoLoan.Controllers
 {
+    [Authorize]
     public class PaymentController : Controller
     {
         private readonly DinoloanDbContext _context;

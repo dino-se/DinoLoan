@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DinoLoan.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DinoLoan.Controllers;
 
+[Authorize]
 public class ProfileController : Controller
 {
     private readonly ILogger<ProfileController> _logger;

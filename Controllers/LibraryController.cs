@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DinoLoan.Entity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DinoLoan.Controllers
 {
+    [Authorize]
     public class LibraryController : Controller
     {
         private readonly DinoloanDbContext _context;

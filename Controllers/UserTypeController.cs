@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DinoLoan.Entity;
 using DinoLoan.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DinoLoan.Controllers
 {
+    [Authorize]
     public class UserTypeController : Controller
     {
         private readonly DinoloanDbContext _context;

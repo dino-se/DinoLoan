@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DinoLoan.Entity;
+using DinoLoan.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +29,9 @@ namespace DinoLoan.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login(AccountViewModel acctvm)
         {
-            var user = _context.Accounts.FirstOrDefault(u => u.Username == username && u.Password == password);
+            var user = _context.Accounts.FirstOrDefault(u => u.Username == acctvm.Username && u.Password == acctvm.Password);
             if (user != null)
             {
                 var claims = new List<Claim>
@@ -55,15 +56,15 @@ namespace DinoLoan.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(string username, string password, string confirmPassword)
+        public async Task<IActionResult> Register(AccountViewModel acctvm)
         {
-            if (password != confirmPassword)
+            if (acctvm.Password != acctvm.ConfirmPassword)
             {
                 ModelState.AddModelError("", "Passwords do not match");
                 return View();
             }
 
-            var existingUser = _context.Accounts.FirstOrDefault(u => u.Username == username);
+            var existingUser = _context.Accounts.FirstOrDefault(u => u.Username == acctvm.Username);
             if (existingUser != null)
             {
                 ModelState.AddModelError("", "Username already exists");
@@ -72,8 +73,8 @@ namespace DinoLoan.Controllers
 
             var newUser = new Account
             {
-                Username = username,
-                Password = password
+                Username = acctvm.Username,
+                Password = acctvm.Password
             };
 
             _context.Accounts.Add(newUser);

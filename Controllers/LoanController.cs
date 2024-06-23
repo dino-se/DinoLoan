@@ -1,9 +1,11 @@
 ﻿using DinoLoan.Entity;
 using DinoLoan.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DinoLoan.Controllers
 {
+    [Authorize]
     public class LoanController : Controller
     {
         private readonly DinoloanDbContext _context;
