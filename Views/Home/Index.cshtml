@@ -11,7 +11,7 @@
                     <h5 class="card-title">Borrowers</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">0.00</p>
+                    <p class="card-text" id="totalClient">0.00</p>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                     <h5 class="card-title">User</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">0.00</p>
+                    <p class="card-text" id="totalUser">0.00</p>
                 </div>
             </div>
         </div>
@@ -31,9 +31,37 @@
                     <h5 class="card-title">Collected Today</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">0.00</p>
+                    <p class="card-text" id="collectToday">0.00</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    @* <script src="~/js/payment.js" asp-append-version="true"></script> *@
+
+    <script>
+        fetch("/HomeAPI/ClientCount")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("totalClient").innerHTML = data.count;
+            })
+            .catch(error => console.error('Error fetching client count:', error));
+
+         fetch("/HomeAPI/UserCount")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("totalUser").innerHTML = data.count;
+            })
+            .catch(error => console.error('Error fetching user count:', error));
+        
+         fetch("/HomeAPI/CollectToday")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("collectToday").innerHTML = data.collect;
+            })
+            .catch(error => console.error('Error fetching collections:', error));
+    </script>
+}
